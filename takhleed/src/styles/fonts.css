@@ -1,0 +1,22 @@
+:root {
+  --font-arabic: 'NeoSansArabic', sans-serif;
+  --font-ghaith: 'GHAITHSANS', sans-serif;
+  --font-handicrafts: 'TheYearofHandicrafts', sans-serif;
+  --font-english: 'Poppins', sans-serif;
+
+  /* Tailles de police */
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 4rem;
+
+  /* Espacement de ligne */
+  --leading-normal: 1.5;
+  --leading-relaxed: 2;
+  --leading-loose: 2.5;
+}

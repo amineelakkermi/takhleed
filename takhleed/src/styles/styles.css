@@ -1,0 +1,14 @@
+.scroll-target {
+  scroll-margin-top: 80px;
+}
+
+/* Style pour les liens de navigation */
+.scroll-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.scroll-link:hover {
+  opacity: 0.8;
+}

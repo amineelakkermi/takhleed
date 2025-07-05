@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Styles Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Configuration des polices */
+@font-face {
+  font-family: 'NeoSansArabic';
+  src: url('/fonts/NeoSansArabic-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GHAITHSANS';
+  src: url('/fonts/GHAITHSANS-Regular.otf') format('opentype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TheYearofHandicrafts';
+  src: url('/fonts/TheYearofHandicrafts-Regular.otf') format('opentype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* Variables CSS pour les polices */
+:root {
+  --font-arabic: 'NeoSansArabic', sans-serif;
+  --font-ghaith: 'GHAITHSANS', sans-serif;
+  --font-handicrafts: 'TheYearofHandicrafts', sans-serif;
+  --font-english: 'Poppins', sans-serif;
+}
+
+*{
+  scroll-behavior: smooth;
+}
+
+/* Application des polices */
+body {
+  font-family: var(--font-arabic), var(--font-english), sans-serif;
+}
+
+/* Classes utilitaires pour les polices */
+.font-arabic {
+  font-family: var(--font-arabic) !important;
+}
+
+.font-ghaith {
+  font-family: var(--font-ghaith) !important;
+}
+
+.font-handicrafts {
+  font-family: var(--font-handicrafts) !important;
+}
+
+.font-english {
+  font-family: var(--font-english) !important;
+}
+
