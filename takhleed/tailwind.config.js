@@ -6,7 +6,12 @@ module.exports = {
     "./components/**/*.{js,jsx,ts,tsx}"
   ],
   mode: "jit",
+  darkMode: false, // désactive le mode sombre si non utilisé
   theme: {
+    container: {
+      center: true,
+      padding: '1rem',
+    },
     colors: {
       white: "#fff",
       brownText: "#90714f",
