@@ -119,7 +119,7 @@ export default function Navbar() {
               </button>
             </div>
             
-            <div className="flex flex-col justify-center  py-8 h-screen items-center gap-8">
+            <div className="flex flex-col justify-center py-8 h-screen items-center gap-8">
               {menuItems.map((item, index) => (
                 <Link
                   key={index}

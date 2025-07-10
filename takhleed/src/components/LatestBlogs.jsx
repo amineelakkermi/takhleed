@@ -34,7 +34,7 @@ const LatestBlogs = () => {
     ];
   
     return (
-      <section className={`${styles.padding} bg-[#783424] w-full z-[999] px-6 md:px-20 relative overflow-hidden`}>
+      <section className={`${styles.padding} bg-[#783424] w-full px-6 md:px-20 relative overflow-hidden`}>
   
         <div className={`${styles.marginY} ${styles.marginX} relative flex flex-col gap-16`}>
         <h2 className={`${styles.title} font-handicrafts font-medium text-white`}>أحدث كتاباتنا</h2>       
