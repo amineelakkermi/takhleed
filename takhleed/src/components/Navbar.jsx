@@ -30,7 +30,7 @@ export default function Navbar() {
     { 
       href: '/contact', 
       text: 'تواصل الآن',
-      className: 'bg-brown2 text-[18px] text-white hover:text-white transition-colors duration-200 py-2 px-6 rounded-full border-none'
+      className: 'bg-brown2 hidden md:flex text-[18px] text-white hover:text-white transition-colors duration-200 py-2 px-6 rounded-full border-none'
     }
   ];
 
@@ -75,6 +75,9 @@ export default function Navbar() {
           </div>
 
           <div className="flex flex-2 items-center gap-8 md:gap-12">
+           <button className='bg-brown2 md:hidden text-[15px] text-white hover:text-white transition-colors duration-200 py-2 px-3 rounded-full border-none'>
+            تواصل الآن
+           </button>
             {/* Mobile menu button */}
             <button onClick={() => setIsOpen(!isOpen)} className="md:hidden">
               <Image src={isOpen ? menuClose : menuOpen} alt="menu" width={30} height={30} />
