@@ -76,7 +76,9 @@ export default function Navbar() {
 
           <div className="flex flex-2 items-center gap-8 md:gap-12">
            <button className='bg-brown2 md:hidden text-[15px] text-white hover:text-white transition-colors duration-200 py-2 px-3 rounded-full border-none'>
-            تواصل الآن
+           <a href='/contact'  >
+           تواصل الآن          
+           </a>
            </button>
             {/* Mobile menu button */}
             <button onClick={() => setIsOpen(!isOpen)} className="md:hidden">
