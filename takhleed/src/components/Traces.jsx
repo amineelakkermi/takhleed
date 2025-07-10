@@ -2,7 +2,7 @@ import Image from 'next/image';
 import styles, { layout } from '@/styles/style';
 
 // Component constants
-const TITLE = 'من هنا <br className="hidden md:flex"/> بدأ الأثر';
+const TITLE = 'مــن هنــا <br className="hidden md:flex"/> بدأ الأثـــر';
 const PARAGRAPHS = [
   'حين لم يكن للجمال من يوثقه , وحين كانت الحكايات الجميلة تمضي بلا شاهد ولا أثر في - تخليد آمنا أن لكل قصة قيمة، ولكل لحظة معنى، تستحق أن تروى وتحفظ، لا لتسكن الذاكرة فحسب، بل لتلهم الأجيال تثرس الزمان والمكان',
   'التوثيق هو جذر رسالتنا , ومن خلاله نسهم في بناء مجتمعات تقدر الحكاية , وتطور كل ما يمس الإنسان و الفكر والأشياء. سنمضي بشغف, ونبذل ما نستطيع, لنعطي لكل جميل امتدادا, ولكل أثر بقاء'
@@ -23,7 +23,7 @@ const Traces = () => {
       {PARAGRAPHS.map((text, index) => (
         <p 
           key={index} 
-          className={`${styles.paragraph2} font-handicrafts text-white`}
+          className={`${styles.paragraph2} text-white`}
           dangerouslySetInnerHTML={{ __html: text }}
         />
       ))}

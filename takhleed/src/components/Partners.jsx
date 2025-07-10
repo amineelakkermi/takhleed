@@ -14,7 +14,7 @@ export default function Partners() {
 
   return (
     <section className="w-full flex flex-col py-10 px-4 md:px-16 bg-white text-center relative">
-      <h2 className="text-2xl md:text-3xl font-bold mb-6 text-left">شركاء التنفيذ</h2>
+      <h2 className="font-ghaith text-2xl md:text-3xl font-bold mb-6 text-left">شركاء التنفيذ</h2>
       <div className="border-t border-gray-400 mb-8"></div>
       
       <div className={styles.wrapper}>

@@ -3,7 +3,7 @@ const styles = {
   
     title: "font-bold lg:text-[55px] text-[38px] leading-[64.8px] lg:mt-0 mt-10",
     paragraph: "font-normal text-[18px] leading-[30.8px]",
-    paragraph2: "font-normal text-[18px] lg:text-[20px] leading-[30.8px] lg:leading-[45px]",
+    paragraph2: "font-normal text-[20px] lg:text-[22px] leading-[30.8px] lg:leading-[45px]",
   
     flexCenter: "flex justify-center items-center",
     flexStart: "flex justify-center items-start",

@@ -67,7 +67,7 @@ const Culture = () => {
   
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
              <div className="flex justify-center items-center">
-             <h2 className="font-ghaith text-[25px] md:text-[55px] font-bold text-right mb-10">بماذا نثري <br /> الثقافة؟</h2>
+             <h2 className="font-handicrafts text-[25px] md:text-[55px] font-bold text-right mb-10">بماذا نثـــري <br /> الثقافة؟</h2>
 
              </div>
             {items.map((item, index) => (

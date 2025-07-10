@@ -20,7 +20,7 @@ const IMAGE_SIZES = {
 };
 
 const TEXT_STYLES = {
-  title: 'font-ghaith text-[24px] sm:text-[32px]  lg:text-[60px] xl:text-[95px] leading-[30px] sm:leading-[40px] lg:leading-[70px] xl:leading-[125px] text-white font-bold',
+  title: 'font-handicrafts text-[24px] sm:text-[32px]  lg:text-[60px] xl:text-[95px] leading-[30px] sm:leading-[40px] lg:leading-[70px] xl:leading-[125px] text-white font-bold',
   content: 'text-[16px] sm:text-[18px]  lg:text-[22px] leading-[24px] sm:leading-[28px] lg:leading-[36px] max-w-[90%] font-handricafts text-black'
 };
 
@@ -43,9 +43,9 @@ const Promises = () => {
                 <p className={TEXT_STYLES.title}>
                   وعد أخذناه 
                   <br />
-                  على عاتقنا
+                  على عاتقنـــا
                   <br />
-                  في تخليد
+                  في تخليـــد
                 </p>
               </div>
             </div>

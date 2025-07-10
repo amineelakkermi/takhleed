@@ -5,7 +5,7 @@ export default function BlogsHero() {
     <section className={`w-full min-h-[100vh] bg-brown1 py-6 md:py-8 overflow-hidden`}>
      <div className={`lg:px-48 px-6 lg:py-12 py-6 ${styles.marginX} ${styles.marginY} w-full flex flex-col gap-5`}>
      <h2 className="text-white text-4xl font-bold font-handicrafts">اليوم الوطني</h2>
-      <p className={`${styles.paragraph2} text-white w-[90%] max-w-[85%]`}>
+      <p className={`${styles.paragraph2} font-handicrafts text-white w-[90%] max-w-[85%]`}>
         تحتفل المملكة العربية السعودية بيومها الوطني في اليوم الأول من الميزان الموافق 23 سبتمبر (أيلول) من كل عام، وذلك تخليداً لذكرى توحيد المملكة وتأسيسها على يد جلالة الملك عبد العزيز بن عبد الرحمن آل سعود رحمه الله.
         ففي مثل هذا اليوم من عام 1351هـ / 1932م، صدر المرسوم الملكي بإعلان توحيد المملكة العربية السعودية، بعد ملحمة البطولة التي قادها المؤسس الملك عبد العزيز بن عبد الرحمن آل سعود – طيب الله ثراه – على مدى اثنين وثلاثين عاماً، حتى استرداد مدينة الرياض عاصمة ملك أجداده وآبائه، في الخامس من شهر شوال عام 1319هـ الموافق 15 يناير 1902م.
       </p>

@@ -17,19 +17,19 @@ const President = () => {
             height={85}
           />
           <p className={`${styles.paragraph} font-handicrafts text-white text-[40px] md:text-[48px] leading-[65px]`}>
-            نؤمن أن لكل قصة حقا في الخلود ولكل إنجاز شاهدا يستحق أن يبقى وأن صناع الأثر قد لا يملكون الوقت لرواية حكاياتهم
+            نؤمـن أن لكل قصـة حقا في الخلـود ولكل إنجاز شاهدا يستحـق أن يبقى وأن صناع الأثـر قد لا يملكـون الوقـت لروايـة حكاياتهـم
           </p>
-          <span className={`${styles.paragraph} font-handicrafts text-brownText text-[20px] md:text-[28px] leading-[32px]`}>
-            لكننا نكرس أوقاتنا لنرويها كما ينبغي <br /> ونخلدها كما تستحق
+          <span className={`${styles.paragraph} font-handicrafts text-[#d0a470] text-[20px] md:text-[28px] leading-[32px]`}>
+            لكننا نكرس أوقاتنـا لنرويهــا كما ينبغـي <br /> ونخلدهـــــــا كما تستحق
           </span>
         </div>
         <div className={`flex-1 flex flex-col relative gap-4`}>
           <div className='flex flex-col gap-2'>
-            <span className={`${styles.paragraph} text-end font-handicrafts text-white text-[18px] md:text-[24px] leading-[32px]`}>
-              مساعد بن خالد البريكان
+            <span className={`${styles.paragraph} text-end  text-white text-[18px] md:text-[24px] leading-[32px]`}>
+              مســاعد بن خــالد البريكــان
             </span>
-            <span className={`${styles.paragraph} text-end font-handicrafts text-white text-[18px] md:text-[24px] leading-[32px]`}>
-              الرئيس التنفيذي - تخليد
+            <span className={`${styles.paragraph} text-end  text-white text-[18px] md:text-[24px] leading-[32px]`}>
+              الرئيس التنفيذي - تخليـــد
             </span>
           </div>
           <div className='w-full h-[100%] flex justify-center items-center'>

@@ -5,12 +5,22 @@ import logoWhite from "../../public/images/common/logoWhite.png"
 import menuOpen from "../../public/images/common/menuOpen.svg"
 import menuClose from "../../public/images/common/menuClose.svg"
 import styles from '@/styles/style';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname(); // 👉 URL actuelle
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const menuItems = [
     { href: '/', text: 'الرئيسية' },
@@ -29,7 +39,7 @@ export default function Navbar() {
   const linkClasses = (item) => {
     const isActive = pathname === item.href;
     return `
-      font-ghaith
+      font-handicrafts
       text-white text-[20px] transition-colors duration-200
       ${isActive ? 'text-[#b86c2c] md:border-b-[2px] border-orange' : ''}
       ${isActive ? '' : 'hover:text-orange'}
@@ -49,10 +59,13 @@ export default function Navbar() {
     `;
   };
 
-
-
   return (
-    <nav className="sm:px-12 px-6 py-6 md:py-8 bg-brown1 z-[999]">
+    <nav className={`fixed top-0 left-0 right-0 w-full sm:px-10 px-6 py-6 md:py-6 z-[999] ${isScrolled && !isOpen ? 'bg-brown1/90 backdrop-blur-sm' : 'bg-brown1'}`}>
+      <style jsx global>{`
+        nav {
+          ${isScrolled && !isOpen ? 'border-bottom: 1px solid rgba(255, 255, 255, 0.1);' : ''}
+        }
+      `}</style>
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center">
           <div className="flex flex-1">
@@ -79,35 +92,43 @@ export default function Navbar() {
                 </Link>
               ))}
             </div>
-
-            {/* Mobile menu */}
-            <div className={`md:hidden fixed  z-[999] top-0 left-0 right-0 bottom-0 bg-[#33241d] p-6 transform ${isOpen ? 'translate-y-0' : '-translate-y-full'} transition-transform duration-300 z-50`}>
-              <div className="flex justify-between items-center mb-8">
-                <Link href="/" className="flex items-center" onClick={() => setIsOpen(false)}>
-                  <Image src={logoWhite} alt="logo" width={100} height={100} />
-                </Link>
-                <button onClick={() => setIsOpen(false)}>
-                  <Image src={menuClose} alt="close" width={30} height={30} />
-                </button>
-              </div>
-
-              <div className="flex justify-center items-center flex-col gap-8">
-                {menuItems.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.href}
-                    className={linkClasses2(item)}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.text}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {isOpen && (
+        <div className="fixed top-0 left-0 right-0 top-0 w-full transform translate-y-0 transition-transform duration-300 z-50">
+          <div className={`flex flex-col bg-brown1 gap-8`}>
+            <div className="absolute top-4 left-4">
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="p-2 hover:opacity-70 transition-opacity"
+              >
+                <Image 
+                  src={menuClose} 
+                  alt="Fermer le menu" 
+                  width={24} 
+                  height={24}
+                />
+              </button>
+            </div>
+            
+            <div className="flex flex-col justify-center  py-8 h-screen items-center gap-8">
+              {menuItems.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.href}
+                  className={linkClasses2(item)}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.text}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

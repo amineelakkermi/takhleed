@@ -13,10 +13,10 @@ import { useRouter } from 'next/navigation';
 export default function ServiceModal() {
   const router = useRouter();
   const serviceContent = {
-    title: "التوثيق الشامل",
+    title: "التوثيـــق الشامــل",
     components: "مكونات الخدمة",
     catalog: "كتالوج التنفيذ",
-    stages: "مراحل التنفيذ",
+    stages: "مراحل التنفيــذ",
     buttonText: "طلب الخدمة",
     imageAlt: "سيرة اللواء محمد القرني"
   };
@@ -30,13 +30,13 @@ export default function ServiceModal() {
       <div className="bg-[#783424] font-handicrafts max-w-full md:max-w-[95%] rounded-lg flex flex-col md:flex-row items-center justify-center px-4 md:px-16 py-8 md:py-10 gap-10 text-right">
         {/* Text Content */}
         <div className="flex flex-col gap-6 text-white max-w-xl">
-          <h2 className="font-handicrafts text-[25px] md:text-[45px] pb-2 border-white w-fit">
+          <h2 className="font-ghaith font-[600] text-[25px] md:text-[45px] pb-2 border-white w-fit">
             {serviceContent.title}
           </h2>
           <hr className="h-[3px] w-[60%] text-white" />
           
           <div>
-            <h3 className="text-[22px] md:text-[25px] mb-3">{serviceContent.components}</h3>
+            <h3 className="text-[22px] md:text-[25px] mb-3 text-beige">{serviceContent.components}</h3>
             <p className="text-[15px] md:text-[17px] leading-loose text-beige">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
               dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
@@ -46,7 +46,7 @@ export default function ServiceModal() {
           </div>
 
           <div>
-            <h3 className="text-[22px] md:text-[25px] mb-3">{serviceContent.catalog}</h3>
+            <h3 className="text-[22px] md:text-[25px] mb-3 text-beige">{serviceContent.catalog}</h3>
             <p className="text-[15px] md:text-[17px] leading-loose text-beige">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
               dolore magna aliquam erat volutpat. Ut wisi enim ad.
@@ -54,7 +54,7 @@ export default function ServiceModal() {
           </div>
 
           <div>
-            <h3 className="text-[22px] md:text-[25px] mb-3">{serviceContent.stages}</h3>
+            <h3 className="text-[22px] md:text-[25px] mb-3 text-beige">{serviceContent.stages}</h3>
           </div>
 
           <button 

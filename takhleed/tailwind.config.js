@@ -6,7 +6,6 @@ module.exports = {
     "./components/**/*.{js,jsx,ts,tsx}"
   ],
   mode: "jit",
-  darkMode: false, // désactive le mode sombre si non utilisé
   theme: {
     container: {
       center: true,
@@ -14,9 +13,9 @@ module.exports = {
     },
     colors: {
       white: "#fff",
-      brownText: "#90714f",
+      brownText: "#d0a470",
       brownText2: "#72461e",
-      brown1: "#50241c",
+      brown1: "#501c1c",
 
       brown2: "#bf564b",
       brown3: "#281c14",

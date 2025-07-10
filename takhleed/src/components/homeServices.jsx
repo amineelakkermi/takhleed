@@ -40,9 +40,9 @@ const HomeServices = () => {
               height={4000}
             />
             <div className="absolute inset-0 flex justify-center items-center">
-              <p className="font-ghaith text-[30px] sm:text-[40px] md:text-[95px] leading-[45px] md:leading-[125px] text-white font-bold">
-                في <br /> تخليد
-              </p>
+            <p className="font-handicrafts text-[30px] sm:text-[40px] md:text-[95px] leading-[45px] md:leading-[125px] text-white font-bold">
+           فـــــي <br /> تخليـــــد
+             </p>
             </div>
           </div>
         </div>

@@ -20,7 +20,7 @@ const Footer = () => {
           </Link>
 
           {/* Links: Organized in 2 columns */}
-          <div className="flex flex-col sm:flex-row gap-12 text-lg">
+          <div className="flex gap-6 sm:gap-12 text-md sm:text-lg">
 
             {/* Colonne 1 → Navbar Links */}
             <div className="flex flex-col gap-2">

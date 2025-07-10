@@ -10,7 +10,7 @@ const TEXT_CONTENT = {
   paragraphs: [
     'بل تناقــــــــــــــــــــش',
     'تفكــــــــــــــــــــــــــــك',
-    'تعاد صياغتها لتبقى'
+    'تعاد صياغتها لتبقــى'
   ]
 };
 
@@ -31,7 +31,7 @@ const Stories = () => {
       {/* Content container */}
       <div className={`w-[30%] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2`}>
         <div className={`${layout.sectionInfo} gap-8`}>
-          <span className={`${styles.paragraph} font-handicrafts text-brownText text-[20px] lg:text-[28px] leading-[32px]`}>
+          <span className={`${styles.paragraph} text-brownText text-[20px] lg:text-[28px] leading-[32px]`}>
             {TEXT_CONTENT.title}
           </span>
           <p className={`${styles.paragraph} font-handicrafts text-white text-[40px] lg:text-[48px] leading-[80px]`}>
