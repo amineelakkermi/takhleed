@@ -53,7 +53,7 @@ const Footer = () => {
               <a href="https://www.tiktok.com/@takhleed_ksa" target="_blank" rel="noopener noreferrer">
                 <Image src={tiktok} alt="TikTok" width={30} height={30} />
               </a>
-              <a href="https://www.instagram.com/takhleed_ksa/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/takhleedsa/" target="_blank" rel="noopener noreferrer">
                 <Image src={instagram} alt="Instagram" width={30} height={30} />
               </a>
               <a href="https://x.com/takhleed_ksa?s=21" target="_blank" rel="noopener noreferrer">
