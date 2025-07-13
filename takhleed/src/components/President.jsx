@@ -98,7 +98,7 @@ const President = () => {
 
   return (
     <section ref={refs.section} className={`${styles.padding}  bg-brown3 relative min-h-[100vh] w-full`}>
-      <div className={`flex lg:flex-row flex-col ${styles.paddingY} mt-24 md:mt-16 w-full h-[100%]`}>
+      <div className={`flex lg:flex-row flex-col ${styles.paddingY}  mt-24 md:mt-16 w-full h-[100%]`}>
         <div className={`${layout.sectionInfo} gap-8`}>
           <Image
             ref={refs.comma}

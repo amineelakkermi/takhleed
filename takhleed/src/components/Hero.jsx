@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import background1 from '../../public/images/home/background1.png';
 import { FaPlay } from 'react-icons/fa';
+import background1 from '../../public/images/home/background1.png';
 
 const Hero = () => {
   return (
@@ -10,15 +10,11 @@ const Hero = () => {
           src={background1}
           alt="Hero background"
           fill
-          className="object-cover mt-16"
           priority
+          className="object-cover mt-16"
         />
         <div className="absolute inset-0 bg-black/40" />
-        
-        {/* Play button */}
-        <div 
-          className="absolute inset-0 flex items-center justify-center"
-        >
+        <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative w-20 h-20 rounded-full bg-white/20 flex items-center justify-center">
             <FaPlay className="text-white w-10 h-10" />
           </div>
