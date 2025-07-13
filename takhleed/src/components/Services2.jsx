@@ -138,30 +138,32 @@ const Services2 = () => {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    itemRefs.current.forEach((el, index) => {
+  
+    itemRefs.current.forEach((el) => {
       if (!el) return;
-
-      gsap.set(el, { opacity: 0, y: 30 });
-
-      gsap.to(el, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        delay: index * 0.1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          toggleActions: 'play none none reverse',
-          markers: false
+  
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          }
         }
-      });
+      );
     });
-
+  
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
+  
 
   return (
     <div className={`${styles.padding} bg-[#f9f7ee] mt-16 md:mt-24`}>
