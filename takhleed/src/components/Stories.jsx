@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import styles, { layout } from '@/styles/style';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -22,6 +22,14 @@ const TEXT_CONTENT = {
   ],
 };
 
+const ANIMATION_CONFIG = {
+  duration: 1,
+  ease: 'power2.out',
+  mobileScale: 0.9,
+  desktopOffset: 50,
+  paragraphDuration: 0.6,
+};
+
 const Stories = () => {
   // Refs
   const titleRef = useRef(null);
@@ -31,11 +39,9 @@ const Stories = () => {
   const about1MobileRef = useRef(null);
   const about2MobileRef = useRef(null);
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Helper pour créer l'animation
-    const createAnimation = (el, fromVars, toVars, index = 0) => {
+  // Memoized animation creator
+  const createAnimation = useMemo(() => {
+    return (el, fromVars, toVars, index = 0) => {
       if (!el) return;
 
       const scrollOptions = {
@@ -58,19 +64,23 @@ const Stories = () => {
         }
       );
     };
+  }, []);
 
-    // Desktop
-    createAnimation(about1Ref.current, { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 1, ease: 'power2.out' });
-    createAnimation(about2Ref.current, { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 1, ease: 'power2.out' });
-    createAnimation(titleRef.current, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, ease: 'power2.out' });
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Desktop animations
+    createAnimation(about1Ref.current, { opacity: 0, x: -ANIMATION_CONFIG.desktopOffset }, { opacity: 1, x: 0, duration: ANIMATION_CONFIG.duration });
+    createAnimation(about2Ref.current, { opacity: 0, x: ANIMATION_CONFIG.desktopOffset }, { opacity: 1, x: 0, duration: ANIMATION_CONFIG.duration });
+    createAnimation(titleRef.current, { opacity: 0, y: ANIMATION_CONFIG.desktopOffset }, { opacity: 1, y: 0, duration: ANIMATION_CONFIG.duration });
 
     paragraphRefs.current.forEach((el, index) => {
-      createAnimation(el, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, index);
+      createAnimation(el, { opacity: 0, y: ANIMATION_CONFIG.desktopOffset }, { opacity: 1, y: 0, duration: ANIMATION_CONFIG.paragraphDuration }, index);
     });
 
-    // Mobile
-    createAnimation(about1MobileRef.current, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 1, ease: 'power2.out' });
-    createAnimation(about2MobileRef.current, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 1, ease: 'power2.out' });
+    // Mobile animations
+    createAnimation(about1MobileRef.current, { opacity: 0, scale: ANIMATION_CONFIG.mobileScale }, { opacity: 1, scale: 1, duration: ANIMATION_CONFIG.duration });
+    createAnimation(about2MobileRef.current, { opacity: 0, scale: ANIMATION_CONFIG.mobileScale }, { opacity: 1, scale: 1, duration: ANIMATION_CONFIG.duration });
 
     // Cleanup
     return () => {
@@ -84,7 +94,7 @@ const Stories = () => {
         about2MobileRef.current,
       ]);
     };
-  }, []);
+  }, [createAnimation]);
 
   // Desktop Layout
   const renderDesktopLayout = () => (
