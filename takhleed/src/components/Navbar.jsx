@@ -29,8 +29,8 @@ export default function Navbar() {
     { href: '/blogs', text: 'المدونة' },
     { 
       href: '/contact', 
-      text: 'تواصل الآن',
-      className: 'bg-brown2 hidden md:flex text-[18px] text-white hover:text-white transition-colors duration-200 py-2 px-6 rounded-full border-none'
+      text: 'تواصــل الآن',
+      className: 'bg-brown2 font-ghaith hidden md:flex text-[18px] text-white hover:text-white transition-colors duration-200 py-2 px-6 rounded-full border-none'
     }
   ];
 
@@ -75,9 +75,9 @@ export default function Navbar() {
           </div>
 
           <div className="flex flex-2 items-center gap-8 md:gap-12">
-           <button className='bg-brown2 md:hidden text-[15px] text-white hover:text-white transition-colors duration-200 py-2 px-3 rounded-full border-none'>
+           <button className='bg-brown2 font-ghaith md:hidden text-[15px] text-white hover:text-white transition-colors duration-200 py-2 px-3 rounded-full border-none'>
            <a href='/contact'  >
-           تواصل الآن          
+           تواصــل الآن          
            </a>
            </button>
             {/* Mobile menu button */}

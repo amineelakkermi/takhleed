@@ -1,10 +1,14 @@
+'use client';
+
 import Image from 'next/image';
 import about1 from '../../public/images/about/about1.png';
 import about2 from '../../public/images/about/about2.png';
 import styles, { layout } from '@/styles/style';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Component constants for text content
+// Contenu texte
 const TEXT_CONTENT = {
   title: 'لا تروى الحكايات فقط',
   paragraphs: [
@@ -15,62 +19,154 @@ const TEXT_CONTENT = {
 };
 
 const Stories = () => {
+  const titleRef = useRef(null);
+  const paragraphsRef = useRef([]);
+  const about1Ref = useRef(null);
+  const about2Ref = useRef(null);
+  const about1MobileRef = useRef(null);
+  const about2MobileRef = useRef(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Anim images desktop
+    gsap.fromTo(about1Ref.current, { opacity: 0, x: -50 }, {
+      opacity: 1,
+      x: 0,
+      duration: 1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: about1Ref.current,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+        markers: false
+      }
+    });
+
+    gsap.fromTo(about2Ref.current, { opacity: 0, x: 50 }, {
+      opacity: 1,
+      x: 0,
+      duration: 1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: about2Ref.current,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+        markers: false
+      }
+    });
+
+    // Anim titre
+    gsap.fromTo(titleRef.current, { opacity: 0, y: 50 }, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: titleRef.current,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+        markers: false
+      }
+    });
+
+    // Anim paragraphes
+    paragraphsRef.current.forEach((el, index) => {
+      if (!el) return;
+
+      gsap.fromTo(el, { opacity: 0, y: 50 }, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: index * 0.2,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 90%',
+          toggleActions: 'play none none reverse',
+          markers: false
+        }
+      });
+    });
+
+    // Anim mobile
+    gsap.fromTo(about1MobileRef.current, { opacity: 0, scale: 0.9 }, {
+      opacity: 1,
+      scale: 1,
+      duration: 1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: about1MobileRef.current,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+        markers: false
+      }
+    });
+
+    gsap.fromTo(about2MobileRef.current, { opacity: 0, scale: 0.9 }, {
+      opacity: 1,
+      scale: 1,
+      duration: 1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: about2MobileRef.current,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+        markers: false
+      }
+    });
+
+    return () => {
+      gsap.killTweensOf([
+        about1Ref.current,
+        about2Ref.current,
+        titleRef.current,
+        ...paragraphsRef.current,
+        about1MobileRef.current,
+        about2MobileRef.current
+      ]);
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
+  // Desktop layout
   const renderDesktopLayout = () => (
     <div className='hidden lg:flex'>
-      {/* About1 image container */}
-      <div className='relative lg:absolute left-0 lg:top-0 h-full w-[30%]'>
-        <Image 
-          src={about1} 
-          alt="about1 image" 
-          fill 
-          className='object-cover' 
-          priority
-        /> 
+      <div ref={about1Ref} className='relative lg:absolute left-0 lg:top-0 h-full w-[30%]'>
+        <Image src={about1} alt="about1 image" fill className='object-cover' priority />
       </div>
 
-      {/* Content container */}
       <div className={`w-[30%] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2`}>
         <div className={`${layout.sectionInfo} gap-8`}>
-          <span className={`${styles.paragraph} text-brownText text-[20px] lg:text-[28px] leading-[32px]`}>
+          <span ref={titleRef} className={`${styles.paragraph} text-brownText text-[20px] lg:text-[28px] leading-[32px]`}>
             {TEXT_CONTENT.title}
           </span>
-          <p className={`${styles.paragraph} font-handicrafts text-white text-[40px] lg:text-[48px] leading-[80px]`}>
+          <div className="flex flex-col gap-2 font-handicrafts text-white text-[40px] lg:text-[48px] leading-[80px]">
             {TEXT_CONTENT.paragraphs.map((text, index) => (
-              <React.Fragment key={index}>
+              <p
+                key={index}
+                ref={(el) => (paragraphsRef.current[index] = el)}
+              >
                 {text}
-                {index < TEXT_CONTENT.paragraphs.length - 1 && <br />}
-              </React.Fragment>
+              </p>
             ))}
-          </p>
+          </div>
         </div>
       </div>
 
-      {/* About2 image container */}
-      <div className='absolute right-0 bottom-0 h-[70%] w-[30%]'>
-        <Image 
-          src={about2} 
-          alt="about2 image" 
-          fill 
-          className='object-cover' 
-          priority
-        /> 
+      <div ref={about2Ref} className='absolute right-0 bottom-0 h-[70%] w-[30%]'>
+        <Image src={about2} alt="about2 image" fill className='object-cover' priority />
       </div>
     </div>
   );
 
+  // Mobile layout
   const renderMobileLayout = () => (
     <div className='flex flex-col lg:hidden'>
-      {/* Mobile About1 image */}
-      <div className='w-[50%]'>
-        <Image 
-          src={about1} 
-          alt="about1 image" 
-          className='object-cover' 
-          priority
-        /> 
+      <div ref={about1MobileRef} className='w-[50%]'>
+        <Image src={about1} alt="about1 image" className='object-cover' priority />
       </div>
 
-      {/* Mobile content */}
       <div className={`${styles.marginY} ${styles.padding} w-[100%]`}>
         <div className={`w-full flex flex-col justify-center items-center gap-8`}>
           <span className={`${styles.paragraph} font-handicrafts text-brownText text-[20px] lg:text-[28px] leading-[32px]`}>
@@ -88,15 +184,9 @@ const Stories = () => {
         </div>
       </div>
 
-      {/* Mobile About2 image */}
       <div className='w-full flex justify-end items-end'>
-        <div className='w-[50%]'>
-          <Image 
-            src={about2} 
-            alt="about2 image" 
-            className='object-cover min-h-[250px]' 
-            priority
-          /> 
+        <div ref={about2MobileRef} className='w-[50%]'>
+          <Image src={about2} alt="about2 image" className='object-cover min-h-[250px]' priority />
         </div>
       </div>
     </div>

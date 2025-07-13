@@ -44,8 +44,8 @@ const Footer = () => {
           <div className='flex flex-col gap-8'>
 
             <Link href="/contact">
-              <button className="bg-[#6f3224] text-white py-3 px-6 rounded-full text-lg">
-                تواصل الآن
+              <button className="bg-[#6f3224] font-ghaith font-[600] text-white py-3 px-6 rounded-full text-[20px] md:text-[24px]">
+                تواصـــل الآن
               </button>
             </Link>
 

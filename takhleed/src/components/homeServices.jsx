@@ -1,16 +1,70 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import styles from '@/styles/style';
 import Culture from "../components/Culture";
-import President from './President';
 
-// Import images using Next.js Image component optimization
 const background2 = '/images/home/background2.png';
 const inTakhleed = '/images/home/inTakhleed.png';
 
 const HomeServices = () => {
+  const sectionRef = useRef(null);
+  const imageRef = useRef(null);
+  const titleRef = useRef(null);
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      gsap.from(imageRef.current, {
+        opacity: 0,
+        y: 50,
+        duration: 1.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: imageRef.current,
+          start: 'top 80%',
+        },
+      });
+
+      gsap.from(titleRef.current, {
+        opacity: 0,
+        y: 30,
+        delay: 0.3,
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: 'top 85%',
+        },
+      });
+
+      gsap.from(textRef.current, {
+        opacity: 0,
+        y: 40,
+        duration: 1,
+        delay: 0.5,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: 'top 85%',
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className={`${styles.padding} relative w-full flex flex-col min-h-[120vh] -mt-[100px]`}>
-      
+    <section
+      ref={sectionRef}
+      className={`${styles.padding} relative w-full flex flex-col min-h-[120vh] -mt-[100px]`}
+    >
       {/* Image de fond + overlay noir */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -30,8 +84,9 @@ const HomeServices = () => {
       <div className="relative z-10 sm:pt-16 pt-12 w-full flex flex-row justify-center items-center">
         {/* Left section */}
         <div className="z-20 w-[100%] sm:w-[90%] ml-[-10%]">
-          <div className='flex justify-center items-center relative'>
+          <div className="flex justify-center items-center relative">
             <Image
+              ref={imageRef}
               src={inTakhleed}
               alt="In Takhlid"
               className=" w-[100%] sm:w-[80%] max-h-[450px] object-cover"
@@ -40,17 +95,23 @@ const HomeServices = () => {
               height={4000}
             />
             <div className="absolute inset-0 flex justify-center items-center">
-            <p className="font-handicrafts text-[30px] sm:text-[40px] md:text-[95px] leading-[45px] md:leading-[125px] text-white font-bold">
-           فـــــي <br /> تخليـــــد
-             </p>
+              <p
+                ref={titleRef}
+                className="font-handicrafts text-[30px] sm:text-[40px] md:text-[95px] leading-[45px] md:leading-[125px] text-white font-bold"
+              >
+                فـــــي <br /> تخليـــــد
+              </p>
             </div>
           </div>
         </div>
 
         {/* Right section */}
-        <div className="w-[100%] flex justify-center items-center bg-brown3 rounded-lg py-3 md:py-12 px-6 pr-16 md:pr-36">
+        <div
+          ref={textRef}
+          className="w-[100%] flex justify-center items-center bg-brown3 rounded-lg py-3 md:py-6 px-6 pr-16 md:pr-36"
+        >
           <p className="text-beige font-handicrafts text-[15px] sm:text-[25px] md:text-[40px] leading-[40px] sm:leading-[60px]">
-            لا نكتفي بحفظ الحكايات بل نعيد رسمها لتبقى خالدة لا يطويها النسيان ولا تبهتها السنون
+            لا نكتفـــي بحفـــظ الحكايــات بل نعيــد رسمها لتبقــى خالـدة لا يطويها النسيــان ولا تبهتها السنــون
           </p>
         </div>
       </div>
@@ -59,7 +120,5 @@ const HomeServices = () => {
     </section>
   );
 };
-
-
 
 export default HomeServices;
