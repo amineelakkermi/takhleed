@@ -5,50 +5,70 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const Culture = () => {
-  const items = [
-    {
-      title: 'التوثيق الشامل',
-      id: 'sr1',
-      description: 'تحويل قصص الشخصيات والأماكن والمجتمعات إلى محتوى يلهم الأجيال ويعزز الهوية الثقافية',
-    },
-    {
-      title: 'التوثيق المؤسسي',
-      id: 'sr2',
-      description: 'مشروع متكامل يوثق ذاكرة الجهة ويعيد تنظيمها , بصياغة قصة مؤسسية موثوقة تعكس الهوية و الإنجازات',
-    },
-    {
-      title: 'متحف الجهة',
-      id: 'sr3',
-      description: 'منتج بصري يحول هوية الجهة وقصتها وإنجازاتها إلى تجربة مكانية ملموسة',
-    },
-    {
-      title: 'الرحلات الثقافية',
-      id: 'sr4',
-      description: 'رحلة تفاعلية لاكتشاف الموروث الثقافي عبر الأماكن التاريخية و تجربة العادات والحياة التراثية بأسلوب مبكتر',
-    },
-    {
-      title: 'المزاد الثقافي',
-      id: 'sr5',
-      description: 'منصة داخل التطبيق لعرض وبيع المقتنيات النادرة بإدارة احترافية للمزايدات والتوثيق',
-    },
-    {
-      title: 'الشخصيات الخالدة',
-      id: 'sr6',
-      description: 'منتج يصنع ويدير هوية الشخصيات لتصبح رموزا ملهمة للأجيال',
-    },
-    {
-      title: 'صالون تخليد',
-      id: 'sr7',
-      description: 'صالون ثقافي متنقل ينشر الثقافة ويحكي القصص الإنسانية بأسلوب مبتكر',
-    },
-    {
-      title: 'تطبيق - الواجهة الثقافية',
-      id: 'sr8',
-      description: 'خدمة رقمية لاستكشاف المتاحف الخاصة وحجز زيارات مباشرة لتجربة الثقافة من الداخل',
-    },
-  ];
+const CULTURE_ITEMS = [
+  {
+    title: 'التوثيق الشامل',
+    id: 'sr1',
+    description: 'تحويل قصص الشخصيات والأماكن والمجتمعات إلى محتوى يلهم الأجيال ويعزز الهوية الثقافية',
+  },
+  {
+    title: 'التوثيق المؤسسي',
+    id: 'sr2',
+    description: 'مشروع متكامل يوثق ذاكرة الجهة ويعيد تنظيمها , بصياغة قصة مؤسسية موثوقة تعكس الهوية و الإنجازات',
+  },
+  {
+    title: 'متحف الجهة',
+    id: 'sr3',
+    description: 'منتج بصري يحول هوية الجهة وقصتها وإنجازاتها إلى تجربة مكانية ملموسة',
+  },
+  {
+    title: 'الرحلات الثقافية',
+    id: 'sr4',
+    description: 'رحلة تفاعلية لاكتشاف الموروث الثقافي عبر الأماكن التاريخية و تجربة العادات والحياة التراثية بأسلوب مبكتر',
+  },
+  {
+    title: 'المزاد الثقافي',
+    id: 'sr5',
+    description: 'منصة داخل التطبيق لعرض وبيع المقتنيات النادرة بإدارة احترافية للمزايدات والتوثيق',
+  },
+  {
+    title: 'الشخصيات الخالدة',
+    id: 'sr6',
+    description: 'منتج يصنع ويدير هوية الشخصيات لتصبح رموزا ملهمة للأجيال',
+  },
+  {
+    title: 'صالون تخليد',
+    id: 'sr7',
+    description: 'صالون ثقافي متنقل ينشر الثقافة ويحكي القصص الإنسانية بأسلوب مبتكر',
+  },
+  {
+    title: 'تطبيق - الواجهة الثقافية',
+    id: 'sr8',
+    description: 'خدمة رقمية لاستكشاف المتاحف الخاصة وحجز زيارات مباشرة لتجربة الثقافة من الداخل',
+  },
+];
 
+const ANIMATION_CONFIGS = {
+  title: {
+    opacity: 0,
+    y: 30,
+    duration: 1,
+    ease: 'power2.out',
+    triggerStart: 'top 85%',
+    delay: 0
+  },
+  cards: {
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    ease: 'power2.out',
+    triggerStart: 'top 85%',
+    stagger: 0.2,
+    delay: 0
+  }
+};
+
+const Culture = () => {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const cardsRef = useRef([]);
@@ -57,31 +77,49 @@ const Culture = () => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      gsap.from(titleRef.current, {
-        opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: titleRef.current,
-          start: 'top 85%',
-        },
-      });
+      // Initialize refs arrays
+      cardsRef.current = Array(CULTURE_ITEMS.length).fill(null);
 
-      gsap.from(cardsRef.current, {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: 'power2.out',
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 85%',
-        },
+      // Create title animation
+      if (titleRef.current) {
+        gsap.from(titleRef.current, {
+          ...ANIMATION_CONFIGS.title,
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: ANIMATION_CONFIGS.title.triggerStart,
+            toggleActions: 'play none none reverse'
+          }
+        });
+      }
+
+      // Create staggered animation for cards
+      gsap.utils.toArray(cardsRef.current).forEach((card, index) => {
+        if (!card) return;
+
+        // Set initial styles
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(50px)';
+
+        // Create animation
+        gsap.to(card, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power2.out',
+          delay: index * 0.2,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          }
+        });
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
   }, []);
 
   return (
@@ -100,7 +138,7 @@ const Culture = () => {
             </h2>
           </div>
 
-          {items.map((item, index) => (
+          {CULTURE_ITEMS.map((item, index) => (
             <div
               key={index}
               ref={(el) => (cardsRef.current[index] = el)}

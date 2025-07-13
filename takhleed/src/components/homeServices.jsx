@@ -4,12 +4,38 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
 import styles from '@/styles/style';
 import Culture from "../components/Culture";
 
 const background2 = '/images/home/background2.png';
 const inTakhleed = '/images/home/inTakhleed.png';
+
+const ANIMATION_CONFIGS = {
+  image: {
+    opacity: 0,
+    y: 50,
+    duration: 1.2,
+    ease: 'power3.out',
+    triggerStart: 'top 80%',
+    delay: 0
+  },
+  title: {
+    opacity: 0,
+    y: 30,
+    duration: 1,
+    ease: 'power2.out',
+    triggerStart: 'top 85%',
+    delay: 0.3
+  },
+  text: {
+    opacity: 0,
+    y: 40,
+    duration: 1,
+    ease: 'power2.out',
+    triggerStart: 'top 85%',
+    delay: 0.5
+  }
+};
 
 const HomeServices = () => {
   const sectionRef = useRef(null);
@@ -21,43 +47,26 @@ const HomeServices = () => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      gsap.from(imageRef.current, {
-        opacity: 0,
-        y: 50,
-        duration: 1.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: imageRef.current,
-          start: 'top 80%',
-        },
-      });
+      const createAnimation = (ref, config, type) => {
+        return gsap.from(ref.current, {
+          ...config,
+          scrollTrigger: {
+            trigger: ref.current,
+            start: config.triggerStart,
+            toggleActions: 'play none none reverse'
+          }
+        });
+      };
 
-      gsap.from(titleRef.current, {
-        opacity: 0,
-        y: 30,
-        delay: 0.3,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: titleRef.current,
-          start: 'top 85%',
-        },
-      });
-
-      gsap.from(textRef.current, {
-        opacity: 0,
-        y: 40,
-        duration: 1,
-        delay: 0.5,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: textRef.current,
-          start: 'top 85%',
-        },
-      });
+      createAnimation(imageRef, ANIMATION_CONFIGS.image);
+      createAnimation(titleRef, ANIMATION_CONFIGS.title);
+      createAnimation(textRef, ANIMATION_CONFIGS.text);
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
   }, []);
 
   return (
