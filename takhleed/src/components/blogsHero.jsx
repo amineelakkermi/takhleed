@@ -68,7 +68,7 @@ export default function BlogsHero() {
   }, []);
 
   return (
-    <section className={`w-full min-h-[100vh] bg-brown1 py-6 md:py-8 overflow-hidden`}>
+    <section className={`w-full min-h-[100vh] bg-brown1 py-6 md:py-8 overflow-hidden mt-16 md:mt-0`}>
       <div className={`lg:px-48 px-6 lg:py-12 py-6 ${styles.marginX} ${styles.marginY} w-full flex flex-col gap-5`}>
         
         <h2 ref={titleRef} className="text-white text-4xl font-bold font-handicrafts">
