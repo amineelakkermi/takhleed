@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -39,16 +39,6 @@ const ANIMATION_CONFIGS = {
 
 
 const HomeServices = () => {
-  // Optimiser le rendu initial
-  const [isMounted, setIsMounted] = useState(false);
-  
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return null;
-  }
   const sectionRef = useRef(null);
   const imageRef = useRef(null);
   const titleRef = useRef(null);
@@ -84,20 +74,6 @@ const HomeServices = () => {
     <section
       ref={sectionRef}
       className={`${styles.padding} relative w-full flex flex-col min-h-[120vh] -mt-[100px]`}
-      style={{
-        contain: 'layout paint',
-        willChange: 'transform',
-        visibility: 'hidden',
-        opacity: 0,
-        transition: 'opacity 1s ease-out'
-      }}
-      onLoad={() => {
-        const element = sectionRef.current;
-        if (element) {
-          element.style.visibility = 'visible';
-          element.style.opacity = 1;
-        }
-      }}
     >
       {/* Image de fond + overlay noir */}
       <div className="absolute inset-0 z-0">
@@ -107,42 +83,17 @@ const HomeServices = () => {
           fill
           className="object-cover"
           priority
-          loading="lazy"
-          quality={75}
-          placeholder="blur"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          onLoadingComplete={() => {
-            this.style.opacity = 1;
-          }}
         />
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Partie basse brune */}
-      <div 
-        className="absolute bottom-0 left-0 right-0 h-[3%] bg-brown3" 
-        style={{
-          contain: 'layout paint',
-          willChange: 'transform'
-        }}
-      />
+      <div className="absolute bottom-0 left-0 right-0 h-[3%] bg-brown3" />
 
       {/* Contenu visible */}
-      <div 
-        className="relative z-10 sm:pt-16 pt-12 w-full flex flex-row justify-center items-center"
-        style={{
-          contain: 'layout paint',
-          willChange: 'opacity transform'
-        }}
-      >
+      <div className="relative z-10 sm:pt-16 pt-12 w-full flex flex-row justify-center items-center">
         {/* Left section */}
-        <div 
-          className="z-20 w-[100%] sm:w-[90%] ml-[-10%]"
-          style={{
-            contain: 'layout paint',
-            willChange: 'opacity transform'
-          }}
-        >
+        <div className="z-20 w-[100%] sm:w-[90%] ml-[-10%]">
           <div className="flex justify-center items-center relative">
             <Image
               ref={imageRef}
@@ -152,13 +103,6 @@ const HomeServices = () => {
               priority
               width={900}
               height={4000}
-              loading="lazy"
-              quality={75}
-              placeholder="blur"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              onLoadingComplete={() => {
-                this.style.opacity = 1;
-              }}
             />
             <div className="absolute inset-0 flex justify-center items-center">
               <p
@@ -175,11 +119,6 @@ const HomeServices = () => {
         <div
           ref={textRef}
           className="w-[100%] flex justify-center items-center bg-brown3 rounded-lg py-3 md:py-6 px-6 pr-16 md:pr-36"
-          style={{
-            contain: 'layout paint',
-            willChange: 'opacity transform',
-            containIntrinsicSize: '100%'
-          }}
         >
           <p className="text-beige font-handicrafts text-[15px] sm:text-[25px] md:text-[40px] leading-[40px] sm:leading-[60px]">
             لا نكتفـــي بحفـــظ الحكايــات بل نعيــد رسمها لتبقــى خالـدة لا يطويها النسيــان ولا تبهتها السنــون
