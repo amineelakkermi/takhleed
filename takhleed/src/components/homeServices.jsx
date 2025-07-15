@@ -76,7 +76,14 @@ const HomeServices = () => {
       className={`${styles.padding} relative w-full flex flex-col min-h-[120vh] -mt-[100px]`}
       style={{
         contain: 'layout paint',
-        willChange: 'transform'
+        willChange: 'transform',
+        visibility: 'hidden',
+        opacity: 0,
+        transition: 'opacity 1s ease-out'
+      }}
+      onLoad={() => {
+        this.style.visibility = 'visible';
+        this.style.opacity = 1;
       }}
     >
       {/* Image de fond + overlay noir */}
@@ -87,9 +94,13 @@ const HomeServices = () => {
           fill
           className="object-cover"
           priority
-          loading="eager"
-          quality={85}
+          loading="lazy"
+          quality={75}
+          placeholder="blur"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          onLoadingComplete={() => {
+            this.style.opacity = 1;
+          }}
         />
         <div className="absolute inset-0 bg-black/40" />
       </div>
@@ -122,9 +133,13 @@ const HomeServices = () => {
               priority
               width={900}
               height={4000}
-              loading="eager"
-              quality={85}
+              loading="lazy"
+              quality={75}
+              placeholder="blur"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              onLoadingComplete={() => {
+                this.style.opacity = 1;
+              }}
             />
             <div className="absolute inset-0 flex justify-center items-center">
               <p

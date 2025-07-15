@@ -85,7 +85,14 @@ const Hero = ({ videoSrc = '/video/video.mp4', videoAlt = 'Background video', ti
       aria-label="Hero section with background video"
       style={{
         willChange: 'transform',
-        contain: 'layout paint'
+        contain: 'layout paint',
+        visibility: 'hidden',
+        opacity: 0,
+        transition: 'opacity 1s ease-out'
+      }}
+      onLoad={() => {
+        this.style.visibility = 'visible';
+        this.style.opacity = 1;
       }}
     >
       <video
@@ -96,11 +103,15 @@ const Hero = ({ videoSrc = '/video/video.mp4', videoAlt = 'Background video', ti
         playsInline
         muted
         controls={false}
-        preload="none"
+        preload="metadata"
         poster="/video/poster.jpg"
         crossOrigin="anonymous"
         onError={(e) => {
           console.error('Video error:', e);
+        }}
+        onLoadedMetadata={() => {
+          videoRef.current.currentTime = 0.1;
+          videoRef.current.play();
         }}
       >
         <source src={videoSrc} type="video/mp4" />
