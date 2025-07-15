@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles, { layout } from '@/styles/style';
@@ -46,26 +45,30 @@ const President = () => {
 
   return (
     <section 
-      id='president' 
-      ref={sectionRef} 
-      className={`${styles.padding} bg-brown3 min-h-[100vh] w-full flex items-center justify-center relative`}
+      id="president"
+      ref={sectionRef}
+      className={`${styles.padding} bg-brown3 min-h-[95vh] w-full flex items-center justify-center relative`}
     >
-      <div className={`${layout.sectionInfo} gap-8 text-center mt-8 sm:mt-16 md:mt-32 lg:mt-0 `}>
-        <Image
-          id='comma'
-          ref={commaRef}
-          src='/images/home/comma.png'
-          alt="comma"
-          width={85}
-          height={85}
-          className="mx-auto"
-        />
-        <p
-          ref={textRef}
-          className={`${styles.paragraph} font-handicrafts text-white text-[40px] md:text-[48px] leading-[65px] md:leading-[75px] max-w-[95%] md:max-w-[75%] mx-auto`}
-        >
-          نؤمـن أن لكل قصـة حقا في الخلـود ولكل إنجاز شاهدا يستحـق أن يبقى وأن صناع الأثـر قد لا يملكـون الوقـت لروايـة حكاياتهـم
-        </p>
+      <div className={`${layout.sectionInfo} gap-8 text-center pb-16`}>
+        
+        {/* Virgules au-dessus du texte, alignés à droite */}
+        <div className="flex flex-col items-start max-w-[95%] md:max-w-[75%] mx-auto text-right">
+          <p
+            ref={commaRef}
+            className="text-[#808080]  font-handicrafts text-[250px] leading-none"
+          >
+            ,,
+          </p>
+
+          <p
+            ref={textRef}
+            className={`${styles.paragraph} font-handicrafts text-white text-center text-[32px] md:text-[48px] leading-[55px] md:leading-[75px]`}
+          >
+            نؤمـن أن لكل قصـة حقا في الخلـود ولكل إنجاز شاهدا يستحـق أن يبقى وأن صناع الأثـر قد لا يملكـون الوقـت لروايـة حكاياتهـم
+          </p>
+        </div>
+
+        {/* Texte secondaire */}
         <span
           ref={subTextRef}
           className={`${styles.paragraph} font-handicrafts text-[#d0a470] text-[20px] md:text-[28px] leading-[32px] mx-auto`}

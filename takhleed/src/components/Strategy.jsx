@@ -1,111 +1,50 @@
-'use client';
+/**
+ * Strategy component displays the vision, mission, and values section
+ * with a background overlay and Arabic content.
+ */
 
-import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import styles from '@/styles/style';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Constants
+// Component constants
 const IMAGES = {
-  bgVision: '/images/about/bgVision.png',
+  bgVision: '/images/about/bgVision.png'
 };
 
 const CONTENT_STYLES = {
-  text: 'text-[18px] lg:text-[24px] font-handicrafts leading-[32px] text-white text-right',
-  heading: 'text-white mb-3 font-arabic gont font-bold text-[30px] lg:text-[45px] -rotate-90 whitespace-nowrap',
-  listItem: 'flex items-start justify-start gap-4 text-lg lg:text-xl text-white',
+  container: 'relative md:absolute left-1/2 -translate-x-1/2 mt-0 lg:top-[40px] flex flex-col justify-center items-center gap-8 font-handicrafts max-w-[1400px] mx-auto',
+  section: 'w-full lg:w-[120%] lg:w-[130%] xl:w-[140%] rounded-lg text-white p-6 lg:p-10 flex flex-col items-start lg:items-center justify-start gap-6 min-h-[220px] lg:min-h-[250px] lg:min-h-[220px] h-full',
+  text: 'max-w-[650px] text-lg lg:text-xl leading-relaxed',
+  heading: 'text-3xl lg:text-[32px] lg:text-[48px] xl:text-[64px] font-arabic font-bold w-full lg:w-1/4 text-start lg:text-end',
+  list: 'max-w-[100%] lg:max-w-[650px] text-lg lg:text-xl leading-relaxed list-none space-y-4'
 };
 
 const SECTIONS = [
   {
     title: 'رؤيتنــــا',
-    content: 'المرجــع الإقليمــي في صناعــة الثقافــة الملهمة و الممتدة تاريخيــأ',
-    bg: 'bg-[#783424]',
+    content: 'المرجــع الإقليــمي في صناعــة الثقافــة الملهمة و الممتدة تاريخيــأ',
+    bg: 'bg-[#783424]'
   },
   {
     title: 'رسالتنـــا',
-    content: 'نوثق الهويــة المشتركــة للأفـراد والمجتمعات بما يعكــس القيـم و الفكـر والفـن بهدف تخليدهـا من أجل تسكيل روح مستدامـة لإلهام الأجيـال عبر التاريـخ',
-    bg: 'bg-[#78441c]',
+    content: 'نوثق الهوية المشتركــة للأفراد والمجتمع بما يعكــس القيــم والفكــر والفـن بهدف تخليدهــا من أجل تشكيل روح مستدامــة لإلهام الأجيـال عبر التاريـخ',
+    bg: 'bg-[#78441c]'
   },
   {
     title: 'قيمنـــا',
-    content: ['أصالة المنتجــات', 'استدامة الثقافة', 'الإبهــار الســردي'],
-    bg: 'bg-[#281c14]',
-  },
+    content: [
+      'أصالة المنتجات',
+      'استدامة الثقافة',
+      'الإبهار السحري'
+    ],
+    bg: 'bg-[#281c14]'
+  }
 ];
 
 const Strategy = () => {
-  const sectionRefs = useRef([]);
-  const animationConfig = {
-    from: { opacity: 0, y: 50 },
-    to: {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: 'power2.out',
-      scrollTrigger: {
-        start: 'top 85%',
-        toggleActions: 'play none none reverse',
-        markers: false,
-      },
-    },
-  };
-
-  const createAnimation = (el, index) => {
-    if (!el) return;
-    gsap.fromTo(el, animationConfig.from, {
-      ...animationConfig.to,
-      delay: index * 0.2,
-    });
-  };
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    sectionRefs.current.forEach(createAnimation);
-
-    setTimeout(ScrollTrigger.refresh, 100);
-
-    return () => {
-      sectionRefs.current.forEach((el) => el && gsap.killTweensOf(el));
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
-
-  const renderSection = (section, index) => (
-    <div
-      key={section.title}
-      ref={(el) => (el && (sectionRefs.current[index] = el))}
-      className={`${section.bg} rounded-[5px] text-white min-h-[400px] md:min-h-[500px] lg:min-h-[580px] flex flex-col px-3 lg:px-6 py-6 lg:py-16 ${
-        index === 0 ? 'lg:max-w-[340px]' : 
-        index === 1 ? 'lg:max-w-[350px]' : 
-        index === 2 ? 'lg:max-w-[500px]' : 
-        'max-w-[350px]'
-      }`}
-    >
-      <div className="flex-1 flex  justify-end text-right">
-        {Array.isArray(section.content) ? (
-          <ul className="space-y-4  w-full">
-            {section.content.map((item, i) => (
-              <li key={i} className={CONTENT_STYLES.listItem}>
-                <span className="text-[#d0a470] text-[15px] lg:text-[25px] font-bold">{i + 1}</span>
-                <span className="text-[30px] lg:text-[45px]  lg:leading-[45px] font-ghaith">{item}</span>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className={CONTENT_STYLES.text}>{section.content}</p>
-        )}
-      </div>
-      <div className="flex justify-start items-start">
-        <h2 className={CONTENT_STYLES.heading}>{section.title}</h2>
-      </div>
-    </div>
-  );
-
   return (
-    <section className={`${styles.padding} relative w-full min-h-[100vh] flex items-center justify-center`}>
+    <section className={`${styles.padding}  relative w-full flex flex-col min-h-[100vh]`}>
+      {/* Background Image and Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
           src={IMAGES.bgVision}
@@ -116,8 +55,30 @@ const Strategy = () => {
         />
         <div className="absolute inset-0 bg-black/40" />
       </div>
-      <div className="relative z-10 grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-8 lg:gap-6 w-[100%] lg:w-[85%] mx-auto font-handicrafts justify-center">
-        {SECTIONS.map(renderSection)}
+
+      {/* Content */}
+      <div className={CONTENT_STYLES.container}>
+        {SECTIONS.map((section, index) => (
+          <div 
+            key={section.title}
+            className={`${section.bg} ${CONTENT_STYLES.section} flex-col lg:flex-row`}
+          >
+            <div className="flex-1 flex flex-col lg:flex-row items-start gap-4 lg:gap-0 justify-start md:justify-between">
+              {Array.isArray(section.content) ? (
+                <ul className={CONTENT_STYLES.list}>
+                  {section.content.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p className={CONTENT_STYLES.text}>
+                  {section.content}
+                </p>
+              )}
+              <h2 className={CONTENT_STYLES.heading}>{section.title}</h2>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
