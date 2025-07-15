@@ -32,7 +32,7 @@ const Footer = () => {
 
             {/* Colonne 2 → Autres liens */}
             <div className="flex flex-col gap-2">
-              <Link href="#"><span>الملف التعريفي</span></Link>
+              <a href="/identite/takhleed.pdf" download="takhleed.pdf"><span>الملف التعريفي</span></a>
               <Link href="#"><span>أخبارنا</span></Link>
               <Link href="#"><span>تطبيق تخليد</span></Link>
               <Link href="#"><span>غريسة القابضة</span></Link>
@@ -50,16 +50,13 @@ const Footer = () => {
             </Link>
 
             <div className="flex justify-start gap-3">
-              <a href="https://www.tiktok.com/@takhleed_ksa" target="_blank" rel="noopener noreferrer">
-                <Image src={tiktok} alt="TikTok" width={30} height={30} />
-              </a>
               <a href="https://www.instagram.com/takhleedsa/" target="_blank" rel="noopener noreferrer">
                 <Image src={instagram} alt="Instagram" width={30} height={30} />
               </a>
-              <a href="https://x.com/takhleed_ksa?s=21" target="_blank" rel="noopener noreferrer">
+              <a href="#" target="_blank" rel="noopener noreferrer">
                 <Image src={twitter} alt="Twitter (X)" width={30} height={30} />
               </a>
-              <a href="https://www.linkedin.com/showcase/takhleed/" target="_blank" rel="noopener noreferrer">
+              <a href="#" target="_blank" rel="noopener noreferrer">
                 <Image src={linkedin} alt="LinkedIn" width={30} height={30} />
               </a>
             </div>
