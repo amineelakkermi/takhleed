@@ -4,6 +4,16 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 
 const Hero = ({ videoSrc = '/video/video.mp4', videoAlt = 'Background video', title = 'Bienvenue' }) => {
+  // Optimiser le rendu initial
+  const [isMounted, setIsMounted] = useState(false);
+  
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showButton, setShowButton] = useState(false);
@@ -113,6 +123,11 @@ const Hero = ({ videoSrc = '/video/video.mp4', videoAlt = 'Background video', ti
           videoRef.current.currentTime = 0.1;
           videoRef.current.play();
         }}
+        onCanPlay={() => {
+          videoRef.current.muted = true;
+          videoRef.current.playsInline = true;
+          videoRef.current.play();
+        }}
       >
         <source src={videoSrc} type="video/mp4" />
         Your browser does not support the video tag.
@@ -126,8 +141,11 @@ const Hero = ({ videoSrc = '/video/video.mp4', videoAlt = 'Background video', ti
           className="absolute z-30 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-4xl md:text-5xl bg-black/60 p-4 rounded-full hover:bg-black/80 transition"
           aria-label={isPlaying ? "Pause video" : "Play video"}
           aria-pressed={isPlaying}
+          role="button"
+          tabIndex={0}
         >
           {isPlaying ? <FaPause aria-hidden="true" /> : <FaPlay aria-hidden="true" />}
+          <span className="sr-only">{isPlaying ? 'Pause video' : 'Play video'}</span>
         </button>
       )}
 
