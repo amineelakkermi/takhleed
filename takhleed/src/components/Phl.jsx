@@ -85,9 +85,10 @@ const Phl = () => {
         </h2>
         <p
           ref={textRef}
-          className="text-md md:text-xl leading-loose max-w-[90%] md:max-w-[650px] font-arabic text-[#333]"
+          className="text-md md:text-xl leading-loose max-w-[90%] md:max-w-[650px] font-arabic text-[#7b402b]"
         >
-          <span className="font-bold text-[#C29660]">الثمودية</span> هي نظام كتابة قديم استخدمه
+    
+          <span className="font-bold text-[#7b402b]">الثمودية</span> هي نظام كتابة قديم استخدمه
           الثموديون، وهم من القبائل العربية القديمة التي عاشت في شمال شبه الجزيرة العربية خلال
           الألفية الأولى قبل الميلاد. تتميز الحروف الثمودية بأنها <span className="font-bold">نقشية</span>
           ... واستُخدمت هذه الكتابة في النقوش الصخرية والرسومات الجدارية لتوثيق الأحداث وتخليد الذكريات.
