@@ -159,7 +159,7 @@ const Culture = () => {
               >
                 {item.title}
               </h3>
-              <p className="text-right text-brown text-[18px] leading-[26px]">
+              <p className="text-right font-handicrafts text-brown text-[18px] leading-[26px]">
                 {item.description}
               </p>
             </div>
