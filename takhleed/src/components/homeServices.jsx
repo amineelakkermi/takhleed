@@ -37,6 +37,7 @@ const ANIMATION_CONFIGS = {
   }
 };
 
+
 const HomeServices = () => {
   const sectionRef = useRef(null);
   const imageRef = useRef(null);
@@ -106,7 +107,7 @@ const HomeServices = () => {
             <div className="absolute inset-0 flex justify-center items-center">
               <p
                 ref={titleRef}
-                className="font-handicrafts text-[30px] sm:text-[40px] md:text-[95px] leading-[45px] md:leading-[125px] text-white font-bold"
+                className="font-handicrafts  text-[30px] sm:text-[40px] md:text-[95px] leading-[45px] md:leading-[125px] text-white font-bold"
               >
                 فـــــي <br /> تخليـــــد
               </p>
