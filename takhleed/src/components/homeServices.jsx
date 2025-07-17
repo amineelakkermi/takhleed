@@ -81,7 +81,7 @@ const HomeServices = () => {
           src={background2}
           alt="Background image"
           fill
-          className="object-cover"
+          className="object-cover rounded-[25px]"
           priority
         />
         <div className="absolute inset-0 bg-black/40" />
